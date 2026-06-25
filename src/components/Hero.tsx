@@ -171,7 +171,7 @@ export default function Hero() {
           className="flex items-center justify-center"
         >
           <ProfileCard
-            avatarUrl="/portrait.png"
+            avatarUrl=""
             miniAvatarUrl="/avatar.jpg"
             name="Rakshit Varu"
             title="Lead Data Engineer"
