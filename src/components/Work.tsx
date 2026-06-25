@@ -137,7 +137,7 @@ export default function Work() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="shrink-0"
+            className="shrink-0 w-[31rem] pb-24"
           >
             <p
               className="text-xs tracking-widest uppercase mb-8"
