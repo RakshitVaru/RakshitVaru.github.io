@@ -9,12 +9,18 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-    dedupe: ['react', 'react-dom', 'three', '@react-three/fiber', 'framer-motion'],
   },
   server: {
     port: parseInt(process.env.PORT || '5174'),
   },
-  optimizeDeps: {
-    include: ['three', '@react-three/fiber'],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) return 'vendor-react';
+          if (id.includes('node_modules/framer-motion')) return 'vendor-motion';
+        },
+      },
+    },
   },
 })
