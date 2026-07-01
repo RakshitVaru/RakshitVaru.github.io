@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Database, Bot, BarChart3, FileText } from "lucide-react";
+import { ArrowUpRight, Database, Bot, BarChart3, FileText, Shield, TrendingUp } from "lucide-react";
 import DisplayCards from "@/components/ui/display-cards";
 import type { DisplayCardProps } from "@/components/ui/display-cards";
 
@@ -25,6 +25,8 @@ const PROJECTS: Project[] = [
     description:
       "A workflow of cooperating agents that validates 500+ interconnected DBT models across 50+ source systems against their source specifications before any pipeline reaches production. Backed by a custom MCP server for scoped tool access and a RAG knowledge base so each check is grounded in real documentation — not model inference. Replaced slow, error-prone manual review entirely.",
     chips: ["Multi-agent", "MCP", "RAG", "DBT", "Python"],
+    link: "https://github.com/RakshitVaru/Sample_Agentic",
+    linkLabel: "GitHub",
     icon: <Bot size={15} style={{ color: 'var(--accent)' }} />,
   },
   {
@@ -45,7 +47,7 @@ const PROJECTS: Project[] = [
     description:
       "A full-stack analytics platform: FastAPI backend serving insights, Streamlit visualizations for interactive exploration, Dockerized deployment on AWS EC2, with Snowflake SQL powering real-time sales trend queries. Built as an end-to-end showcase of the modern data stack outside the enterprise context.",
     chips: ["FastAPI", "Snowflake", "Docker", "AWS", "Streamlit"],
-    link: "#",
+    link: "https://github.com/RakshitVaru/RetailInsights",
     linkLabel: "GitHub",
     icon: <BarChart3 size={15} style={{ color: 'var(--accent)' }} />,
   },
@@ -61,27 +63,50 @@ const PROJECTS: Project[] = [
     linkLabel: "Read paper",
     icon: <FileText size={15} style={{ color: 'var(--accent)' }} />,
   },
+  {
+    id: "05",
+    tag: "Open source",
+    title: "RiskETL Pipeline",
+    short: "Config-driven ETL with data quality gates",
+    description:
+      "A config-driven ETL pipeline that extracts public financial datasets (CFPB Consumer Complaints, UCI Bank Marketing), enforces schema contracts with Pandera, loads into DuckDB, and surfaces findings through a Streamlit dashboard with embedded data-quality reports. Zero-cost architecture demonstrating production-grade practices: quality gates before load, JSON and HTML DQ reports, and Airflow-ready orchestration.",
+    chips: ["Python", "DuckDB", "Pandera", "Streamlit", "Airflow"],
+    link: "https://github.com/RakshitVaru/ETL_Project",
+    linkLabel: "GitHub",
+    icon: <Shield size={15} style={{ color: 'var(--accent)' }} />,
+  },
+  {
+    id: "06",
+    tag: "Open source",
+    title: "VideoGame Analytics",
+    short: "Snowflake-native analytics for gaming data",
+    description:
+      "An interactive analytics dashboard that visualizes video game sales across platforms, genres, and regions using Snowflake as the warehouse and Snowpark for in-warehouse computation. Runs natively inside Snowflake as a Streamlit app — no external server needed. Covers regional breakdowns, critic-score vs. sales correlations, and revenue trends across thousands of titles.",
+    chips: ["Snowflake", "Snowpark", "Streamlit", "Python", "Plotly"],
+    link: "https://github.com/RakshitVaru/VideoGame_Analytics",
+    linkLabel: "GitHub",
+    icon: <TrendingUp size={15} style={{ color: 'var(--accent)' }} />,
+  },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 // Stack classNames: cards ordered back → front (last = top)
+const OVERLAY = "before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-[rgba(255,255,255,.06)] before:h-[100%] before:content-[''] before:bg-[var(--card-overlay)] grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0";
 const STACK_CLASSES = [
-  // Card 0 — back (ARMatrix)
-  "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-[rgba(255,255,255,.06)] before:h-[100%] before:content-[''] before:bg-[var(--card-overlay)] grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-  // Card 1
-  "[grid-area:stack] translate-x-12 translate-y-8 hover:-translate-y-4 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-[rgba(255,255,255,.06)] before:h-[100%] before:content-[''] before:bg-[var(--card-overlay)] grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-  // Card 2
-  "[grid-area:stack] translate-x-24 translate-y-16 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-[rgba(255,255,255,.06)] before:h-[100%] before:content-[''] before:bg-[var(--card-overlay)] grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-  // Card 3 — front (Multi-agent)
-  "[grid-area:stack] translate-x-36 translate-y-24 hover:translate-y-[84px]",
+  `[grid-area:stack] hover:-translate-y-10 ${OVERLAY}`,
+  `[grid-area:stack] translate-x-8 translate-y-4 hover:-translate-y-8 ${OVERLAY}`,
+  `[grid-area:stack] translate-x-16 translate-y-8 hover:-translate-y-4 ${OVERLAY}`,
+  `[grid-area:stack] translate-x-24 translate-y-12 hover:-translate-y-2 ${OVERLAY}`,
+  `[grid-area:stack] translate-x-32 translate-y-16 hover:-translate-y-1 ${OVERLAY}`,
+  "[grid-area:stack] translate-x-40 translate-y-20 hover:translate-y-[68px]",
 ];
 
 export default function Work() {
   const [selected, setSelected] = useState<number | null>(0);
 
-  // Build cards array: back-to-front order = [ARMatrix, Retail, ETL, Multiagent]
-  const stackOrder = [3, 2, 1, 0]; // indices into PROJECTS for back→front
+  // Build cards array: back-to-front order = [VideoGame, RiskETL, ARMatrix, Retail, ETL, Multiagent]
+  const stackOrder = [5, 4, 3, 2, 1, 0]; // indices into PROJECTS for back→front
   const cards: DisplayCardProps[] = stackOrder.map((projectIdx, stackIdx) => ({
     icon: PROJECTS[projectIdx].icon,
     title: PROJECTS[projectIdx].title,
@@ -121,10 +146,10 @@ export default function Work() {
             className="text-4xl md:text-5xl font-bold leading-tight mb-3"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: 'var(--text)' }}
           >
-            Things I've shipped.
+            Things I've built.
           </h2>
           <p style={{ color: 'var(--text2)' }} className="text-lg max-w-[52ch]">
-            Production systems, open-source tools, and published research — built across five years at RBC and beyond.
+            Production pipelines, open-source data tools, and published research — five years of shipping across enterprise and personal projects.
           </p>
         </motion.div>
 
@@ -137,7 +162,7 @@ export default function Work() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="shrink-0 w-[31rem] pb-24"
+            className="shrink-0 w-[33rem] pb-24"
           >
             <p
               className="text-xs tracking-widest uppercase mb-8"
