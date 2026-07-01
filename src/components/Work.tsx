@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
     title: "Multi-agent DBT validation",
     short: "Agents that catch what humans miss",
     description:
-      "A workflow of cooperating agents that validates 500+ interconnected DBT models across 50+ source systems against their source specifications before any pipeline reaches production. Backed by a custom MCP server for scoped tool access and a RAG knowledge base so each check is grounded in real documentation — not model inference. Replaced slow, error-prone manual review entirely.",
+      "A workflow of cooperating agents that validates 500+ interconnected DBT models across 50+ source systems against their source specifications before any pipeline reaches production. Backed by a custom MCP server for scoped tool access and a RAG knowledge base so each check is grounded in real documentation - not model inference. Replaced slow, error-prone manual review entirely.",
     chips: ["Multi-agent", "MCP", "RAG", "DBT", "Python"],
     link: "https://github.com/RakshitVaru/Sample_Agentic",
     linkLabel: "GitHub",
@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
     title: "ETL-OTIS-CORE consolidation",
     short: "Three legacy pipelines merged into one",
     description:
-      "Merging three legacy data flows — ETL, OTIS, and CORE — into a single Spark and DBT pipeline running on OpenShift and PostgreSQL. End-to-end processing cut from 2–3 hours to under 30 minutes across the board (4 hours to under 1 hour for the most data-intensive sources). Owns architecture decisions and guides the team on delivery and production readiness.",
+      "Merging three legacy data flows - ETL, OTIS, and CORE - into a single Spark and DBT pipeline running on OpenShift and PostgreSQL. End-to-end processing cut from 2-3 hours to under 30 minutes across the board (4 hours to under 1 hour for the most data-intensive sources). Owns architecture decisions and guides the team on delivery and production readiness.",
     chips: ["Spark", "DBT", "OpenShift", "PostgreSQL"],
     icon: <Database size={15} style={{ color: 'var(--accent)' }} />,
   },
@@ -57,7 +57,7 @@ const PROJECTS: Project[] = [
     title: "ARMatrix",
     short: "Market-basket analysis, visualized",
     description:
-      "A 2D item-to-rule matrix for interactive association-rule analysis of market-basket data. Lets analysts explore large rule sets visually rather than scanning flat tables — highlighting support, confidence, and lift at a glance. Published in the MDPI Journal of Electronics.",
+      "A 2D item-to-rule matrix for interactive association-rule analysis of market-basket data. Lets analysts explore large rule sets visually rather than scanning flat tables - highlighting support, confidence, and lift at a glance. Published in the MDPI Journal of Electronics.",
     chips: ["Pandas", "NumPy", "Association rules", "Research"],
     link: "https://www.mdpi.com/1600930",
     linkLabel: "Read paper",
@@ -81,7 +81,7 @@ const PROJECTS: Project[] = [
     title: "VideoGame Analytics",
     short: "Snowflake-native analytics for gaming data",
     description:
-      "An interactive analytics dashboard that visualizes video game sales across platforms, genres, and regions using Snowflake as the warehouse and Snowpark for in-warehouse computation. Runs natively inside Snowflake as a Streamlit app — no external server needed. Covers regional breakdowns, critic-score vs. sales correlations, and revenue trends across thousands of titles.",
+      "An interactive analytics dashboard that visualizes video game sales across platforms, genres, and regions using Snowflake as the warehouse and Snowpark for in-warehouse computation. Runs natively inside Snowflake as a Streamlit app - no external server needed. Covers regional breakdowns, critic-score vs. sales correlations, and revenue trends across thousands of titles.",
     chips: ["Snowflake", "Snowpark", "Streamlit", "Python", "Plotly"],
     link: "https://github.com/RakshitVaru/VideoGame_Analytics",
     linkLabel: "GitHub",
@@ -149,7 +149,7 @@ export default function Work() {
             Things I've built.
           </h2>
           <p style={{ color: 'var(--text2)' }} className="text-lg max-w-[52ch]">
-            Production pipelines, open-source data tools, and published research — five years of shipping across enterprise and personal projects.
+            Production pipelines, open-source data tools, and published research - five years of shipping across enterprise and personal projects.
           </p>
         </motion.div>
 

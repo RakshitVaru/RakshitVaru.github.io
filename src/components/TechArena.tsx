@@ -396,7 +396,7 @@ export default function TechArena() {
             The tools that do the work.
           </h2>
           <p style={{ color: 'var(--text2)' }} className="text-lg max-w-[52ch]">
-            Every layer of the data stack — from ingestion to production.
+            Every layer of the data stack - from ingestion to production.
           </p>
         </motion.div>
 

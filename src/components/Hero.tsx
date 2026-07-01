@@ -85,7 +85,7 @@ export default function Hero() {
             className="text-lg leading-relaxed max-w-[48ch]"
             style={{ color: 'var(--text2)' }}
           >
-            Started as a Quality Engineer — the one who finds what breaks. Five
+            Started as a Quality Engineer - the one who finds what breaks. Five
             years on, I lead the data platforms I once tested. Same instinct for
             correctness, far more leverage.
           </motion.p>
