@@ -11,6 +11,8 @@ interface DisplayCardProps {
   iconClassName?: string;
   titleClassName?: string;
   onClick?: () => void;
+  isSelected?: boolean;
+  cardKey?: React.Key;
 }
 
 function DisplayCard({
@@ -21,12 +23,13 @@ function DisplayCard({
   date = "Just now",
   titleClassName = "text-[#37d495]",
   onClick,
+  isSelected = false,
 }: DisplayCardProps) {
   return (
     <div
       onClick={onClick}
       className={cn(
-        "relative flex h-36 w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border px-4 py-3 transition-all duration-700",
+        "relative flex h-36 w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border px-4 py-3 transition-[transform,border-color,background-color,filter,box-shadow] duration-300",
         "border-[rgba(255,255,255,.10)] bg-[#0e1315]/80 backdrop-blur-sm",
         "after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem]",
         "after:bg-gradient-to-l after:from-[#0a0d0f] after:to-transparent after:content-['']",
@@ -79,7 +82,7 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
   return (
     <div className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
       {displayCards.map((cardProps, index) => (
-        <DisplayCard key={index} {...cardProps} />
+        <DisplayCard key={cardProps.cardKey ?? index} {...cardProps} />
       ))}
     </div>
   );

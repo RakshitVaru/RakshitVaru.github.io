@@ -47,7 +47,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 pt-36 pb-20 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
 
         {/* ── Left: text ──────────────────────────────── */}
         <motion.div
@@ -72,11 +72,11 @@ export default function Hero() {
             className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] tracking-tight"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: 'var(--text)' }}
           >
-            Pipelines that scale.
+            I ship pipelines.
             <br />
-            <span style={{ color: 'var(--accent)' }}>Agents</span> that keep
+            I build <span style={{ color: 'var(--accent)' }}>agents</span>.
             <br />
-            them honest.
+            <span style={{ color: 'var(--accent)' }}>Agents</span> guard what ships.
           </motion.h1>
 
           {/* Lede */}
@@ -105,24 +105,6 @@ export default function Hero() {
               >
                 {tag}
               </span>
-            ))}
-          </motion.div>
-
-          {/* Stats row */}
-          <motion.div
-            variants={STAGGER.item}
-            className="flex flex-wrap gap-6 text-sm"
-            style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
-          >
-            {[
-              ["50+", "source systems"],
-              ["500+", "DBT models validated"],
-              ["75%", "faster processing"],
-            ].map(([n, l]) => (
-              <div key={n} className="flex flex-col gap-0.5">
-                <span className="text-xl font-semibold" style={{ color: 'var(--accent)' }}>{n}</span>
-                <span className="text-xs" style={{ color: 'var(--text2)' }}>{l}</span>
-              </div>
             ))}
           </motion.div>
 

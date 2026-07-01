@@ -66,7 +66,7 @@ export default function Experience() {
             className="text-4xl md:text-5xl font-bold leading-tight mb-3"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif", color: 'var(--text)' }}
           >
-            A decade-in-five at one bank.
+            From tester to Lead Data Engineer. Three roles, owned end to end.
           </h2>
           <p style={{ color: 'var(--text2)' }} className="text-lg max-w-[52ch]">
             Three roles, one throughline: making large-scale data trustworthy.

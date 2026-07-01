@@ -25,8 +25,6 @@ const PROJECTS: Project[] = [
     description:
       "A workflow of cooperating agents that validates 500+ interconnected DBT models across 50+ source systems against their source specifications before any pipeline reaches production. Backed by a custom MCP server for scoped tool access and a RAG knowledge base so each check is grounded in real documentation - not model inference. Replaced slow, error-prone manual review entirely.",
     chips: ["Multi-agent", "MCP", "RAG", "DBT", "Python"],
-    link: "https://github.com/RakshitVaru/Sample_Agentic",
-    linkLabel: "GitHub",
     icon: <Bot size={15} style={{ color: 'var(--accent)' }} />,
   },
   {
@@ -91,34 +89,49 @@ const PROJECTS: Project[] = [
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-// Stack classNames: cards ordered back → front (last = top)
-const OVERLAY = "before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-[rgba(255,255,255,.06)] before:h-[100%] before:content-[''] before:bg-[var(--card-overlay)] grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0";
+// Stack classNames: fixed back → front order
+const OVERLAY = "before:absolute before:w-full before:h-full before:rounded-xl before:content-[''] before:bg-[rgba(10,13,15,0.72)] grayscale hover:before:opacity-0 before:transition-opacity before:duration-300 hover:grayscale-0 before:left-0 before:top-0 before:z-10";
 const STACK_CLASSES = [
-  `[grid-area:stack] hover:-translate-y-10 ${OVERLAY}`,
-  `[grid-area:stack] translate-x-8 translate-y-4 hover:-translate-y-8 ${OVERLAY}`,
-  `[grid-area:stack] translate-x-16 translate-y-8 hover:-translate-y-4 ${OVERLAY}`,
-  `[grid-area:stack] translate-x-24 translate-y-12 hover:-translate-y-2 ${OVERLAY}`,
-  `[grid-area:stack] translate-x-32 translate-y-16 hover:-translate-y-1 ${OVERLAY}`,
-  "[grid-area:stack] translate-x-40 translate-y-20 hover:translate-y-[68px]",
+  `[grid-area:stack] z-[1] hover:-translate-y-10 ${OVERLAY}`,
+  `[grid-area:stack] z-[2] translate-x-8 translate-y-4 hover:-translate-y-8 ${OVERLAY}`,
+  `[grid-area:stack] z-[3] translate-x-16 translate-y-8 hover:-translate-y-4 ${OVERLAY}`,
+  `[grid-area:stack] z-[4] translate-x-24 translate-y-12 hover:-translate-y-2 ${OVERLAY}`,
+  `[grid-area:stack] z-[5] translate-x-32 translate-y-16 hover:-translate-y-1 ${OVERLAY}`,
+  `[grid-area:stack] z-[6] translate-x-40 translate-y-20 hover:translate-y-[68px] ${OVERLAY}`,
 ];
 
+// Selected card: lifts 16px up from its fan slot to expose header, no z override
+const SELECTED_AT_STACK = [
+  `[grid-area:stack] z-[1] -translate-y-4 border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+  `[grid-area:stack] z-[2] translate-x-8 translate-y-0 border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+  `[grid-area:stack] z-[3] translate-x-16 translate-y-4 border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+  `[grid-area:stack] z-[4] translate-x-24 translate-y-8 border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+  `[grid-area:stack] z-[5] translate-x-32 translate-y-12 border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+  `[grid-area:stack] z-[6] translate-x-40 translate-y-[68px] border-[rgba(55,212,149,.65)] ring-1 ring-[rgba(55,212,149,.2)] bg-[#0e1315] grayscale-0`,
+];
+
+// Fixed order: back → front. projectIdx 0 (Multi-agent) always at front slot.
+const FIXED_ORDER = [5, 4, 3, 2, 1, 0];
+
 export default function Work() {
-  const [selected, setSelected] = useState<number | null>(0);
+  const [selected, setSelected] = useState<number>(0);
 
-  // Build cards array: back-to-front order = [VideoGame, RiskETL, ARMatrix, Retail, ETL, Multiagent]
-  const stackOrder = [5, 4, 3, 2, 1, 0]; // indices into PROJECTS for back→front
-  const cards: DisplayCardProps[] = stackOrder.map((projectIdx, stackIdx) => ({
-    icon: PROJECTS[projectIdx].icon,
-    title: PROJECTS[projectIdx].title,
-    description: PROJECTS[projectIdx].short,
-    date: PROJECTS[projectIdx].id + " · " + PROJECTS[projectIdx].tag,
-    className: STACK_CLASSES[stackIdx],
-    onClick: () => setSelected(projectIdx),
-    titleClassName:
-      selected === projectIdx ? "text-[#37d495]" : "text-[#37d495]",
-  }));
+  const cards: DisplayCardProps[] = FIXED_ORDER.map((projectIdx, stackIdx) => {
+    const isSelected = selected === projectIdx;
+    return {
+      cardKey: projectIdx,
+      icon: PROJECTS[projectIdx].icon,
+      title: PROJECTS[projectIdx].title,
+      description: PROJECTS[projectIdx].short,
+      date: PROJECTS[projectIdx].id + " · " + PROJECTS[projectIdx].tag,
+      className: isSelected ? SELECTED_AT_STACK[stackIdx] : STACK_CLASSES[stackIdx],
+      onClick: () => setSelected(projectIdx),
+      isSelected,
+      titleClassName: "text-[#37d495]",
+    };
+  });
 
-  const project = selected !== null ? PROJECTS[selected] : null;
+  const project = PROJECTS[selected];
 
   return (
     <section
@@ -170,7 +183,9 @@ export default function Work() {
             >
               Click a card to explore
             </p>
-            <DisplayCards cards={cards} />
+            <div className="-translate-x-5 translate-y-3">
+              <DisplayCards cards={cards} />
+            </div>
           </motion.div>
 
           {/* Detail panel */}

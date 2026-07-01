@@ -268,7 +268,7 @@ export default function Contact() {
           style={{ borderTop: '1px solid var(--border-faint)' }}
         >
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--text3)' }}>
-            © 2026 Rakshit Varu · Built with React + Vite
+            © 2026 Rakshit Varu
           </p>
         </motion.div>
 
